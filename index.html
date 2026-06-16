@@ -531,6 +531,7 @@
     <div class="foot">
       <span>© 2026 Sanjoy Kumar Basu · guwahati</span>
       <span>Built around curiosity, careful experiments and useful questions.</span>
+      <span id="viewbox" style="font-family:var(--ui);font-size:.82rem;opacity:.6;">Total views <b id="viewcount" aria-live="polite" style="color:var(--accent-d);font-weight:700;">…</b></span>
     </div>
   </div>
 </footer>
@@ -544,6 +545,16 @@
     en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } });
   }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
   els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+<script>
+(function(){
+  var el=document.getElementById('viewcount'), box=document.getElementById('viewbox');
+  if(!el) return;
+  fetch('https://abacus.jasoncameron.dev/hit/sanjoykumarbasu-iitg-portfolio/views')
+    .then(function(r){ return r.json(); })
+    .then(function(d){ el.textContent = Number(d.value).toLocaleString(); })
+    .catch(function(){ if(box) box.style.display='none'; });
 })();
 </script>
 </body>
