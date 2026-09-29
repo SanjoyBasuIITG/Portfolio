@@ -63,22 +63,13 @@
       .margin-ruler-right { right: 14px; border-left: 1px solid var(--hairline); transform: scaleX(-1); }
     }
   </style>
-  <style data-purpose="side-room">
-    /* From 900px wide there is always room in both side margins for the margin stories. --edge is the distance from the
-       screen edge to the content; on screens narrower than 1416px (small laptops, scaled displays, phones in
-       "desktop site" mode) the content narrows a little to keep at least 156px, instead of the margins switching off. */
-    :root { --edge: max(calc((100vw - 1104px) / 2), 156px); }
-    @media (min-width: 900px) {
-      html body main, html body .site-nav-inner, html body footer > div { max-width: min(1152px, calc(100vw - 2 * (var(--edge) - 24px))) !important; }
-    }
-  </style>
   <style data-purpose="margin-stories">
     /* Margin stories (Publications): one tall fixed field per side; each entry stamps an ink impression into it as it comes into view (motion.js) */
     .pub-field { display: none; --stamp-rust: #A5573E; --stamp-teal: #3E6F73; --stamp-moss: #6B7F4E; }
-    @media (min-width: 900px) and (min-height: 560px) {
+    @media (min-width: 1440px) and (min-height: 560px) {
       .pub-field {
-        --gutter: var(--edge);
-        --zw: clamp(64px, calc(var(--gutter) - 88px), 176px);
+        --gutter: calc((100vw - 1104px) / 2);
+        --zw: clamp(84px, calc(var(--gutter) - 72px), 176px);
         display: block; position: fixed; top: 84px; bottom: 160px;   /* the bottom stays clear of the footer rule, even scrolled to the very end */ width: var(--zw); z-index: 1; pointer-events: none;
       }
       .pub-field-left { left: calc((var(--gutter) + 40px) / 2 - var(--zw) / 2); }

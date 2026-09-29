@@ -167,23 +167,14 @@
       .margin-ruler-right { right: 14px; border-left: 1px solid var(--hairline); transform: scaleX(-1); }
     }
   </style>
-  <style data-purpose="side-room">
-    /* From 900px wide there is always room in both side margins for the margin stories. --edge is the distance from the
-       screen edge to the content; on screens narrower than 1636px (small laptops, scaled displays, phones in
-       "desktop site" mode) the content narrows a little to keep at least 170px, instead of the margins switching off. */
-    :root { --edge: max(calc((100vw - 1360px) / 2 + 32px), 170px); }
-    @media (min-width: 900px) {
-      html body main, html body .site-nav-inner, html body footer > div { max-width: min(1360px, calc(100vw - 2 * (var(--edge) - 32px))) !important; }
-    }
-  </style>
   <style data-purpose="margin-stories">
     /* Margin stories (Fun Pictures): a film strip (left) and a zig-zag string of prints (right) that are part of the page, so they scroll with it */
     .fun-film, .fun-frames, .fun-line, .fun-camera, .fun-album { display: none; }
-    @media (min-width: 900px) {
+    @media (min-width: 1660px) {
       .contact-sheet-panel {
         position: relative;
-        --mw: clamp(64px, calc(var(--edge) - 142px), 124px);
-        --gutter: var(--edge);                 /* screen edge → sheet edge */
+        --mw: clamp(84px, calc((100vw - 1360px) / 2 - 110px), 124px);
+        --gutter: calc((100vw - 1360px) / 2 + 32px);                 /* screen edge → sheet edge */
         --side: calc((30px - var(--gutter)) / 2 - var(--mw) / 2);   /* centre of the margin, relative to the sheet */
       }
       /* room below the sheet so the take-up reel and the album show in full, like the reel and camera at the top */

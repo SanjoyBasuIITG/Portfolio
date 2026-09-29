@@ -44,22 +44,13 @@
       .margin-ruler-right { right: 14px; border-left: 1px solid var(--hairline); transform: scaleX(-1); }
     }
   </style>
-  <style data-purpose="side-room">
-    /* From 900px wide there is always room in both side margins for the margin stories. --edge is the distance from the
-       screen edge to the content; on screens narrower than 1416px (small laptops, scaled displays, phones in
-       "desktop site" mode) the content narrows a little to keep at least 156px, instead of the margins switching off. */
-    :root { --edge: max(calc((100vw - 1104px) / 2), 156px); }
-    @media (min-width: 900px) {
-      html body main, html body .site-nav-inner, html body footer > div { max-width: min(1152px, calc(100vw - 2 * (var(--edge) - 24px))) !important; }
-    }
-  </style>
   <style data-purpose="margin-stories">
     /* Margin stories (Home): one tall fixed field per side; scrolling zooms through levels of scattered sketches (the zoom lives in motion.js) */
     .home-zoom { display: none; }
-    @media (min-width: 900px) and (min-height: 560px) {
+    @media (min-width: 1440px) and (min-height: 560px) {
       .home-zoom {
-        --gutter: var(--edge);
-        --zw: min(clamp(64px, calc(var(--gutter) - 96px), 184px), calc((100vh - 244px) / 4));
+        --gutter: calc((100vw - 1104px) / 2);
+        --zw: min(clamp(84px, calc(var(--gutter) - 64px), 184px), calc((100vh - 244px) / 4));
         display: block; position: fixed; width: var(--zw); z-index: 1; pointer-events: none;
         top: calc(84px + (100vh - 244px - var(--zw) * 4) / 2);   /* centred between the nav and 160px above the bottom, clear of the footer rule */
         opacity: 0; transition: opacity 0.6s ease;
