@@ -1,0 +1,317 @@
+/* Motion 1: Focus pull */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-focus-pull {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.04);
+    transition: opacity 700ms ease-out, filter 700ms ease-out, transform 700ms ease-out;
+  }
+  
+  .motion-focus-pull.is-visible {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+
+  /* Motion 3: Data bar scale bar shrinks at each chapter */
+  .data-bar-rule {
+    transition: width 300ms ease-out;
+  }
+
+  /* Motion 4: Floating microsphere */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .motion-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Motion 5: UV lamp */
+  .motion-uv-lamp {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+  
+  .motion-uv-lamp.is-lit {
+    opacity: 0.15;
+  }
+
+  /* Motion 6: Loupe */
+  .motion-loupe {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .motion-loupe::before {
+    content: '';
+    position: absolute;
+    inset: -6px -12px;
+    background: radial-gradient(circle at center, rgba(31, 169, 225, 0.1) 0%, transparent 70%);
+    border-radius: 8px;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  .motion-loupe:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Motion 7: Margin stories (Journey). Pen drawing is in motion.js;
+   these small loops start only after a story has finished drawing. */
+/* Living details: start only after a story has finished drawing, and only for the chapter on screen */
+.marginalia-svg [class^="m-"] { transform-box: fill-box; }
+.m-trace { opacity: 0; stroke-dasharray: 10 90; }
+@media (prefers-reduced-motion: no-preference) {
+  .is-drawn .m-drip { animation: m-drip 2.2s linear infinite; }
+  .is-drawn .m-bob { animation: m-bob 4.5s ease-in-out infinite; }
+  .is-drawn .m-vapour { animation: m-vapour 3.6s ease-out infinite; }
+  .is-drawn .m-vapour-1 { animation-delay: 1.2s; }
+  .is-drawn .m-vapour-2 { animation-delay: 2.4s; }
+  .is-drawn .m-glow { animation: m-glow 2.8s ease-in-out infinite; }
+  .is-drawn .m-glow:nth-of-type(3n) { animation-delay: 0.9s; }
+  .is-drawn .m-glow:nth-of-type(3n+1) { animation-delay: 1.8s; }
+  .is-drawn .m-trace { opacity: 0.95; animation: m-trace 2.4s linear infinite; }
+  .is-drawn .m-pull-l { animation: m-pull-l 3s ease-in-out infinite; }
+  .is-drawn .m-pull-r { animation: m-pull-r 3s ease-in-out infinite; }
+  .is-drawn .m-spark { animation: m-spark 3s ease-in-out infinite; }
+  .is-drawn .m-stretch { transform-origin: left center; animation: m-stretch 3.2s ease-in-out infinite; }
+  .is-drawn .m-press-top { animation: m-press-top 2.6s linear infinite; }
+  .is-drawn .m-press-bottom { animation: m-press-bottom 2.6s linear infinite; }
+  /* one slight motion for every other sketch; durations differ so nothing moves in lockstep */
+  .is-drawn .m-grind { transform-origin: left bottom; animation: m-tilt 3.4s ease-in-out infinite; }
+  .is-drawn .m-punch { animation: m-down 2.8s linear infinite; }
+  .is-drawn .m-rock { transform-origin: center; animation: m-rock 5.2s ease-in-out infinite; }
+  .is-drawn .m-pop { transform-origin: center; animation: m-pop 3.6s ease-in-out infinite; }
+  .is-drawn .m-wave { animation: m-wave 3.9s ease-in-out infinite; }
+  .is-drawn .m-spin { transform-origin: center; animation: m-spin 1.8s ease-in-out infinite; }
+  .is-drawn .m-page { transform-origin: left center; animation: m-page 4.8s ease-in-out infinite; }
+  .is-drawn .m-plunger { animation: m-plunger 2.6s linear infinite; }
+  .is-drawn .m-peristalsis { transform-origin: center; animation: m-peristalsis 3.1s ease-in-out infinite; }
+  .is-drawn .m-diffuse { animation: m-diffuse 3.7s ease-out infinite; }
+  .is-drawn .m-beam { animation: m-beam 2.5s ease-in-out infinite; }
+  .is-drawn [class^="m-rel-"] { animation: m-rel 4s ease-in-out infinite; }
+  .is-drawn .m-rel-1 { animation-delay: .35s; } .is-drawn .m-rel-2 { animation-delay: .7s; }
+  .is-drawn .m-rel-3 { animation-delay: 1.05s; } .is-drawn .m-rel-4 { animation-delay: 1.4s; }
+  .is-drawn .m-sway { transform-origin: left bottom; animation: m-sway 5.6s ease-in-out infinite; }
+  .is-drawn .m-buzz { animation: m-buzz 0.22s linear infinite; }
+  .is-drawn .m-ripple { transform-origin: center top; animation: m-ripple 1.9s ease-out infinite; }
+  .is-drawn .m-ripple-1 { animation-delay: .3s; } .is-drawn .m-ripple-2 { animation-delay: .6s; }
+  .is-drawn .m-float { animation: m-bob 5s ease-in-out infinite; }
+  .is-drawn .m-drip-f { animation: m-drip 2.6s linear infinite; }
+  .is-drawn .m-slide { animation: m-slide 3.3s ease-in-out infinite; }
+  .is-drawn .m-breathe { transform-origin: center; animation: m-breathe 4.4s ease-in-out infinite; }
+  .is-drawn .m-half-l { animation: m-pull-l 3.5s ease-in-out infinite; }
+  .is-drawn .m-half-r { animation: m-pull-r 3.5s ease-in-out infinite; }
+  .is-drawn .m-flow { animation: m-flow 1.6s ease-in-out infinite; }
+  .is-drawn .m-lens { transform-origin: center; animation: m-lens 6s ease-in-out infinite; }
+  /* Toolkit */
+  .is-drawn .m-scan { opacity: 1; animation: m-scan 4.2s ease-in-out infinite; }
+  .is-drawn .m-focus { animation: m-focus 3.8s ease-in-out infinite; }
+  .is-drawn .m-tap { transform-origin: right center; animation: m-tap 0.9s ease-in-out infinite; }
+  .is-drawn .m-node { transform-origin: center; animation: m-node 2.7s ease-in-out infinite; }
+  .marginalia-svg:not(.is-active) * { animation-play-state: paused; }
+}
+@keyframes m-tilt { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-6deg); } }
+@keyframes m-down { 0% { transform: translateY(0); animation-timing-function: cubic-bezier(.55,0,1,.45); } 20%, 34% { transform: translateY(2.5px); animation-timing-function: cubic-bezier(0,.55,.45,1); } 56%, 100% { transform: translateY(0); } }
+@keyframes m-rock { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes m-pop { 0%, 60%, 100% { transform: scale(1); } 75% { transform: scale(0.8); } }
+@keyframes m-wave { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(1.2px); } }
+@keyframes m-spin { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.35); } }
+@keyframes m-page { 0%, 70%, 100% { transform: scaleX(1); } 82% { transform: scaleX(0.94); } }
+@keyframes m-plunger { 0% { transform: translateY(0); } 65%, 78% { transform: translateY(1.6px); animation-timing-function: ease-in-out; } 100% { transform: translateY(0); } }
+@keyframes m-peristalsis { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.06); } }
+@keyframes m-diffuse { 0% { transform: translateY(1px); opacity: 0.2; } 50% { opacity: 1; } 100% { transform: translateY(-3px); opacity: 0.2; } }
+@keyframes m-beam { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+@keyframes m-rel { 0%, 100% { opacity: 0.35; } 40% { opacity: 1; } }
+@keyframes m-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2.5deg); } }
+@keyframes m-buzz { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(0.4px); } }
+@keyframes m-ripple { 0% { transform: scale(0.85); opacity: 0.2; } 40% { opacity: 1; } 100% { transform: scale(1.12); opacity: 0; } }
+@keyframes m-slide { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
+@keyframes m-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+@keyframes m-flow { 0%, 100% { stroke-opacity: 0.35; } 50% { stroke-opacity: 0.9; } }
+@keyframes m-lens { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes m-scan { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(66px); } }
+@keyframes m-focus { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(1.5px); } }
+@keyframes m-tap { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2deg); } }
+@keyframes m-node { 0%, 100% { opacity: 0.45; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
+.m-scan { opacity: 0; }
+@keyframes m-drip { 0% { transform: translateY(-3px) scale(0.6); opacity: 0; animation-timing-function: ease-out; } 35% { transform: translateY(-3px) scale(1); opacity: 1; animation-timing-function: cubic-bezier(.55,0,1,.45); } 85% { transform: translateY(7px) scale(1, 1.12); opacity: 1; animation-timing-function: linear; } 100% { transform: translateY(8px); opacity: 0; } }
+@keyframes m-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.8px); } }
+@keyframes m-vapour { 0% { transform: translateY(3px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-6px); opacity: 0; } }
+@keyframes m-glow { 0%, 100% { fill-opacity: 0.55; } 50% { fill-opacity: 1; } }
+@keyframes m-trace { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes m-pull-l { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-2px); } }
+@keyframes m-pull-r { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(2px); } }
+@keyframes m-spark { 0%, 35%, 100% { opacity: 0.2; } 50%, 65% { opacity: 1; } }
+@keyframes m-stretch { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(1.07); } }
+@keyframes m-press-top { 0%, 12% { transform: translateY(0); animation-timing-function: cubic-bezier(.55,0,1,.45); } 38%, 62% { transform: translateY(3px); animation-timing-function: cubic-bezier(0,.55,.45,1); } 88%, 100% { transform: translateY(0); } }
+@keyframes m-press-bottom { 0%, 12% { transform: translateY(0); animation-timing-function: cubic-bezier(.55,0,1,.45); } 38%, 62% { transform: translateY(-3px); animation-timing-function: cubic-bezier(0,.55,.45,1); } 88%, 100% { transform: translateY(0); } }
+
+/* Motion 7b, Fun Pictures: frames develop as they scroll into view; slight loops (reel turning is in motion.js) */
+.fun-frame.is-pale { opacity: 0.14; filter: blur(1.5px); }
+.fun-frame { transition: opacity 0.55s ease-out, filter 0.55s ease-out; }
+/* every small moving part turns around its own shape (e.g. clock hands around the clock's centre), not the frame's corner */
+.fun-frame [class^="m-"], .fun-print [class^="m-"] { transform-box: fill-box; }
+.fun-print .m-dangle { transform-box: view-box; transform-origin: 35px 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .is-drawn .m-dangle { animation: m-dangle 3.6s ease-in-out infinite; }
+  .is-drawn .m-flicker { transform-origin: center bottom; animation: m-flicker 0.8s ease-in-out infinite alternate; }
+  .is-drawn .m-sound { animation: m-sound 1.4s ease-out infinite; }
+  .is-drawn .m-hand { transform-origin: left top; animation: m-hand-turn 8s linear infinite; }
+  .is-drawn .m-nod { transform-origin: center bottom; animation: m-nod 3s ease-in-out infinite; }
+  .is-drawn .m-bow { transform-origin: center bottom; animation: m-nod 2.6s ease-in-out infinite; }
+  .is-drawn .m-beat { transform-origin: center; animation: m-beat 1.6s ease-in-out infinite; }
+  .is-drawn .m-wave-hand { transform-origin: center bottom; animation: m-wave-hand 1.3s ease-in-out infinite; }
+  .is-drawn .m-toss { transform-origin: center; animation: m-toss 3.2s ease-in-out infinite; }
+  .is-drawn .m-turn { transform-origin: center; animation: m-turn 12s linear infinite; }
+}
+@keyframes m-dangle { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes m-flicker { from { transform: scale(1, 1) rotate(-3deg); } to { transform: scale(0.9, 1.12) rotate(3deg); } }
+@keyframes m-sound { 0% { opacity: 0; transform: translateX(-2px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateX(3px); } }
+@keyframes m-hand-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes m-nod { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+@keyframes m-beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.18); } 30% { transform: scale(1); } 45% { transform: scale(1.12); } }
+@keyframes m-wave-hand { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+@keyframes m-toss { 0%, 100% { transform: translateY(0) rotate(0deg); } 45% { transform: translateY(-6px) rotate(-8deg); } 60% { transform: translateY(-6px) rotate(-10deg); } }
+@keyframes m-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) { .is-drawn .m-rise { animation: m-rise 2.6s ease-out infinite; } }
+@media (prefers-reduced-motion: no-preference) { .is-drawn .m-cover { transform-box: fill-box; transform-origin: left center; animation: m-cover 5s ease-in-out infinite; } }
+@keyframes m-cover { 0%, 70%, 100% { transform: scaleX(1); } 82% { transform: scaleX(0.9) skewY(-2deg); } }
+@keyframes m-rise { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-14px); opacity: 0; } }
+
+/* Motion 7, Home sketches (slight loops, checked for physics: pivots on hinges, gravity on falls) */
+.home-zoom [class^="m-"] { transform-box: fill-box; }
+@media (prefers-reduced-motion: no-preference) {
+  .is-drawn .m-drift { animation: m-drift 7s ease-in-out infinite; }
+  .is-drawn .m-drift-1 { animation-duration: 8.6s; animation-direction: reverse; }
+  .is-drawn .m-drift-2 { animation-duration: 9.8s; animation-delay: -2s; }
+  .is-drawn .m-knob { transform-origin: center; animation: m-knob 6s ease-in-out infinite; }
+  .is-drawn .m-cork { transform-origin: center bottom; animation: m-cork 3.6s ease-in-out infinite; }
+  /* balance: the beam is set swinging, the swing dies away (damped) and it comes to rest level; the pans rise and fall with the beam ends */
+  .is-drawn .m-tip { transform-origin: center; animation: m-tip 6s linear infinite; }
+  .is-drawn .m-pan-l { animation: m-pan-l 6s linear infinite; }
+  .is-drawn .m-pan-r { animation: m-pan-r 6s linear infinite; }
+  /* tablet press: the punch drops (speeding up), holds on the tablet while compressing it, lifts (slowing down) */
+  .is-drawn .m-press { animation: m-press 2.6s linear infinite; }
+  /* the pill hops: crouch, take off fast, slow at the top, fall faster, squash on landing, settle */
+  .is-drawn .m-hop { transform-origin: center bottom; animation: m-hop 2.4s linear infinite; }
+  .is-drawn .m-wave-slow { animation-duration: 5.2s; animation-direction: reverse; }
+  .is-drawn .m-tail { transform-origin: left top; animation: m-tail 1.8s ease-in-out infinite; }
+  .is-drawn .m-hover { animation: m-hover 5s ease-in-out infinite; }
+  .is-drawn .m-turret { transform-origin: center top; animation: m-turret 5.4s ease-in-out infinite; }
+  .is-drawn .m-pulse { transform-origin: center; animation: m-wobble 3.2s ease-in-out infinite; }
+  .is-drawn .m-vibrate { animation: m-vibrate 0.5s ease-in-out infinite; }
+  /* ball mill: the drum turns steadily, carrying the balls round with it */
+  .is-drawn .m-tumble { transform-origin: center; animation: m-turn-slow 9s linear infinite; }
+  /* a bag standing on the ground rocks on its base, not about its middle */
+  .home-zoom .is-drawn .m-rock, .home-zoom.is-drawn .m-rock { transform-origin: center bottom; }
+  .is-drawn .m-needle { transform-origin: left bottom; animation: m-needle 3.4s ease-in-out infinite; }
+  .is-drawn .m-sway-flag { transform-origin: center top; animation: m-rock 2.6s ease-in-out infinite; }
+  .is-drawn .m-swing { transform-origin: center top; animation: m-swing 4.2s ease-in-out infinite; }
+  .is-drawn .m-scribble { animation: m-scribble 1.4s ease-in-out infinite; }
+  .is-drawn .m-flap { transform-origin: center top; animation: m-flap 4.4s ease-in-out infinite; }
+  .is-drawn .m-glide { animation: m-glide 4.8s ease-in-out infinite; }
+  .is-drawn .m-post { animation: m-post 3.6s ease-in infinite; }
+  .is-drawn .m-shake { animation: m-shake 1.2s ease-in-out infinite; }
+}
+@keyframes m-drift { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(1.6px, -1.1px); } 65% { transform: translate(-1.3px, 1.4px); } }
+@keyframes m-knob { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(40deg); } }
+@keyframes m-cork { 0%, 80%, 100% { transform: rotate(0deg); } 88% { transform: rotate(-9deg); } 94% { transform: rotate(6deg); } }
+@keyframes m-tip { 0% { transform: rotate(0deg); animation-timing-function: ease-in-out; } 8% { transform: rotate(-5deg); animation-timing-function: ease-in-out; } 20% { transform: rotate(3.6deg); animation-timing-function: ease-in-out; } 32% { transform: rotate(-2.5deg); animation-timing-function: ease-in-out; } 44% { transform: rotate(1.7deg); animation-timing-function: ease-in-out; } 56% { transform: rotate(-1.1deg); animation-timing-function: ease-in-out; } 68% { transform: rotate(0.6deg); animation-timing-function: ease-in-out; } 80% { transform: rotate(0deg); animation-timing-function: ease-in-out; } 100% { transform: rotate(0deg); } }
+@keyframes m-pan-l { 0% { transform: translateY(0px); animation-timing-function: ease-in-out; } 8% { transform: translateY(2.44px); animation-timing-function: ease-in-out; } 20% { transform: translateY(-1.76px); animation-timing-function: ease-in-out; } 32% { transform: translateY(1.22px); animation-timing-function: ease-in-out; } 44% { transform: translateY(-0.83px); animation-timing-function: ease-in-out; } 56% { transform: translateY(0.54px); animation-timing-function: ease-in-out; } 68% { transform: translateY(-0.29px); animation-timing-function: ease-in-out; } 80% { transform: translateY(0px); animation-timing-function: ease-in-out; } 100% { transform: translateY(0px); } }
+@keyframes m-pan-r { 0% { transform: translateY(0.00px); animation-timing-function: ease-in-out; } 8% { transform: translateY(-2.44px); animation-timing-function: ease-in-out; } 20% { transform: translateY(1.76px); animation-timing-function: ease-in-out; } 32% { transform: translateY(-1.22px); animation-timing-function: ease-in-out; } 44% { transform: translateY(0.83px); animation-timing-function: ease-in-out; } 56% { transform: translateY(-0.54px); animation-timing-function: ease-in-out; } 68% { transform: translateY(0.29px); animation-timing-function: ease-in-out; } 80% { transform: translateY(0.00px); animation-timing-function: ease-in-out; } 100% { transform: translateY(0.00px); } }
+@keyframes m-press { 0%, 40% { transform: translateY(-1px); animation-timing-function: cubic-bezier(.55,0,1,.45); } 52% { transform: translateY(3.6px); animation-timing-function: linear; } 64% { transform: translateY(4px); animation-timing-function: cubic-bezier(0,.55,.45,1); } 84%, 100% { transform: translateY(-1px); } }
+@keyframes m-turn-slow { to { transform: rotate(360deg); } }
+@keyframes m-hop { 0%, 50% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-in-out; } 56% { transform: translateY(0) scale(1.12, 0.86); animation-timing-function: cubic-bezier(.2,.6,.4,1); } 60% { transform: translateY(-1.5px) scale(0.94, 1.08); animation-timing-function: cubic-bezier(.2,.6,.4,1); } 70% { transform: translateY(-5px) scale(1, 1); animation-timing-function: cubic-bezier(.6,0,.8,.4); } 80% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-out; } 84% { transform: translateY(0) scale(1.14, 0.84); animation-timing-function: ease-out; } 90% { transform: translateY(0) scale(0.97, 1.03); } 96%, 100% { transform: translateY(0) scale(1, 1); } }
+@keyframes m-tail { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(18deg); } }
+@keyframes m-hover { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(3px, -2.2px); } 66% { transform: translate(-2.2px, 1.5px); } }
+@keyframes m-turret { 0%, 100% { transform: rotate(-4.5deg); } 50% { transform: rotate(4.5deg); } }
+@keyframes m-vibrate { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(0.8px, -0.6px); } 75% { transform: translate(-0.6px, 0.8px); } }
+@keyframes m-tumble { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
+@keyframes m-needle { 0%, 100% { transform: rotate(0deg); } 45% { transform: rotate(-50deg); } 60% { transform: rotate(-42deg); } }
+@keyframes m-swing { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+@keyframes m-scribble { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(-3px, 1.2px); } 45% { transform: translate(-3px, 0.2px); } 75% { transform: translate(0.5px, -0.6px); } 88% { transform: translate(0.5px, 0.2px); } }
+@keyframes m-flap { 0%, 70%, 100% { transform: scaleY(1); } 82% { transform: scaleY(-0.35); } }
+@keyframes m-glide { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(4.5px, -4.5px) rotate(-4.5deg); } }
+@keyframes m-post { 0% { transform: translateY(-4px); opacity: 0; } 25% { opacity: 1; } 70% { transform: translateY(6px); opacity: 1; } 85%, 100% { transform: translateY(9px); opacity: 0; } }
+@keyframes m-wobble { 0%, 100% { transform: scale(1, 1); } 33% { transform: scale(1.045, 0.955); } 66% { transform: scale(0.955, 1.045); } }
+@keyframes m-shake { 0%, 100% { transform: translateY(0); } 25% { transform: translateY(-3px); } 75% { transform: translateY(3px); } }
+
+/* Motion 7d, Publications: the stamp drops (speeding up), squashes a little on contact, leaves the impression, lifts
+   (slowing) and fades; the fresh ink is darkest at first and dries a shade lighter. Impressions stay. Each impression then
+   loops one slight living detail. With reduced motion (or no JS) all impressions simply show. */
+.pub-stamper { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.pub-shadow { transform-box: fill-box; }
+.pub-ink { opacity: 0.72; }
+/* three muted stamp-pad inks that sit well on the green-grey page; they take turns so both sides share them */
+.pub-ink-rust path { stroke: var(--stamp-rust); }
+.pub-ink-teal path { stroke: var(--stamp-teal); }
+.pub-ink-moss path { stroke: var(--stamp-moss); }
+.pub-stamp [class^="m-"] { transform-box: fill-box; }
+@media (prefers-reduced-motion: no-preference) {
+  .pub-field.is-armed .pub-stamp:not(.is-stamped):not(.is-stamping) .pub-ink { opacity: 0; }
+  .pub-stamp.is-stamping .pub-stamper { animation: pub-stamper 1s linear forwards; }
+  .pub-stamp.is-stamping .pub-shadow { animation: pub-shadow 1s linear forwards; }
+  .pub-stamp.is-stamping .pub-ink { animation: pub-ink 1s linear forwards; }
+  .pub-stamp.is-stamped .m-ray { animation: pub-ray 2.6s ease-in-out infinite; }
+  .pub-stamp.is-stamped .m-twinkle { transform-origin: center; animation: pub-twinkle 2.2s ease-in-out infinite; }
+  .pub-stamp.is-stamped .m-fibre { transform-origin: left bottom; animation: pub-fibre 4.4s ease-in-out infinite; }
+  .pub-stamp.is-stamped .m-sprig { transform-origin: center bottom; animation: pub-sprig 5s ease-in-out infinite; }
+  .pub-stamp.is-stamped .m-pass { animation: pub-pass 3.2s cubic-bezier(.4,0,.8,.6) infinite; }
+  .pub-stamp.is-stamped .m-peaks path { stroke-dasharray: 1; animation: pub-trace 3.4s linear infinite; }
+  .pub-stamp.is-stamped .m-flag { transform-origin: left bottom; animation: pub-flag 3s ease-in-out infinite; }
+  .pub-stamp.is-stamped .m-sound-out { transform-origin: left center; animation: pub-sound 2.4s ease-out infinite; }
+  .pub-stamp.is-stamped .m-sprout { transform-origin: center bottom; animation: pub-sprout 6s ease-in-out infinite; }
+}
+@keyframes pub-stamper {
+  0% { transform: scale(1.3); opacity: 0; animation-timing-function: cubic-bezier(.55,0,1,.45); }
+  10% { opacity: 1; }
+  32% { transform: scale(1); opacity: 1; animation-timing-function: ease-out; }
+  37% { transform: scale(0.985); animation-timing-function: ease-in-out; }
+  50% { transform: scale(1); opacity: 1; animation-timing-function: cubic-bezier(0,.55,.45,1); }
+  86% { transform: scale(1.22); opacity: 0.8; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+@keyframes pub-shadow {
+  0% { transform: translate(8px, 8px); animation-timing-function: cubic-bezier(.55,0,1,.45); }
+  32%, 50% { transform: translate(0.5px, 0.5px); animation-timing-function: cubic-bezier(0,.55,.45,1); }
+  100% { transform: translate(8px, 8px); }
+}
+@keyframes pub-ink { 0%, 31% { opacity: 0; } 33% { opacity: 0.95; } 100% { opacity: 0.72; } }
+@keyframes pub-ray { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+@keyframes pub-twinkle { 0%, 100% { transform: scale(0.7); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } }
+@keyframes pub-fibre { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes pub-sprig { 0%, 100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
+@keyframes pub-pass { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(26px); opacity: 0; } }
+@keyframes pub-trace { 0% { stroke-dashoffset: 1; } 70%, 100% { stroke-dashoffset: 0; } }
+@keyframes pub-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-4deg); } }
+@keyframes pub-sound { 0% { transform: scale(0.8); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.15); opacity: 0; } }
+@keyframes pub-sprout { 0%, 100% { transform: scaleY(0.92); } 50% { transform: scaleY(1.04); } }
+
+/* Nav logo (mechanochemistry / mechanopharmaceutics), one 3.4 s loop. Strain builds slowly (the chain is pulled, its
+   zigzag stretching flatter, the tether stretching and brightening), the mechanophore snaps, the released drug ring drifts up,
+   slowing, and fades; the chain recoils with a small overshoot; a new ring loads. Still with reduced motion. */
+.site-nav-logo * { transform-box: fill-box; }
+.logo-chain { transform-origin: center; }
+.logo-tether { transform-origin: center bottom; }
+.logo-drug { transform-origin: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .logo-chain { animation: logo-chain 3.4s linear infinite; }
+  .logo-arrow-l { animation: logo-arrow-l 3.4s linear infinite; }
+  .logo-arrow-r { animation: logo-arrow-r 3.4s linear infinite; }
+  .logo-tether { animation: logo-tether 3.4s linear infinite; }
+  .logo-drug { animation: logo-drug 3.4s linear infinite; }
+}
+@keyframes logo-chain { 0%, 8% { transform: scale(1, 1); animation-timing-function: cubic-bezier(.35,0,.75,1); } 42% { transform: scale(1.14, 0.72); animation-timing-function: cubic-bezier(.2,.9,.3,1.25); } 58% { transform: scale(1, 1); } 100% { transform: scale(1, 1); } }
+@keyframes logo-arrow-l { 0%, 8% { transform: translateX(0); animation-timing-function: cubic-bezier(.35,0,.75,1); } 42% { transform: translateX(-1.1px); animation-timing-function: cubic-bezier(.2,.9,.3,1.25); } 58%, 100% { transform: translateX(0); } }
+@keyframes logo-arrow-r { 0%, 8% { transform: translateX(0); animation-timing-function: cubic-bezier(.35,0,.75,1); } 42% { transform: translateX(1.1px); animation-timing-function: cubic-bezier(.2,.9,.3,1.25); } 58%, 100% { transform: translateX(0); } }
+@keyframes logo-tether { 0%, 8% { transform: translateY(0) scaleY(1); opacity: 0.8; animation-timing-function: cubic-bezier(.35,0,.75,1); } 41% { transform: translateY(0.8px) scaleY(1.5); opacity: 1; } 43%, 84% { transform: translateY(0.8px) scaleY(0.2); opacity: 0; } 96%, 100% { transform: translateY(0) scaleY(1); opacity: 0.8; } }
+@keyframes logo-drug { 0%, 8% { transform: translateY(0); opacity: 1; animation-timing-function: cubic-bezier(.35,0,.75,1); } 42% { transform: translateY(-1.2px); opacity: 1; animation-timing-function: cubic-bezier(.1,.7,.3,1); } 76% { transform: translateY(-6px) rotate(24deg); opacity: 0; } 82% { transform: translateY(1.5px) scale(0.5); opacity: 0; animation-timing-function: ease-out; } 96%, 100% { transform: translateY(0) scale(1); opacity: 1; } }
