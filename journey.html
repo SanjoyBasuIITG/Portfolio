@@ -139,12 +139,21 @@
       .margin-ruler-right { right: 14px; border-left: 1px solid var(--hairline); transform: scaleX(-1); }
     }
   </style>
+  <style data-purpose="side-room">
+    /* From 900px wide there is always room in both side margins for the margin stories. --edge is the distance from the
+       screen edge to the content; on screens narrower than 1416px (small laptops, scaled displays, phones in
+       "desktop site" mode) the content narrows a little to keep at least 156px, instead of the margins switching off. */
+    :root { --edge: max(calc((100vw - 1104px) / 2), 156px); }
+    @media (min-width: 900px) {
+      html body main, html body .site-nav-inner, html body footer > div { max-width: min(1152px, calc(100vw - 2 * (var(--edge) - 24px))) !important; }
+    }
+  </style>
   <style data-purpose="margin-stories">
     /* Margin stories: each side margin tells the current chapter's story in three linked ink sketches (switching lives in motion.js) */
     .marginalia-slot { display: none; }
-    @media (min-width: 1440px) and (min-height: 640px) {
+    @media (min-width: 900px) and (min-height: 640px) {
       .marginalia-slot {
-        --mw: min(clamp(84px, calc((100vw - 1152px) / 2 - 90px), 124px), calc((100vh - 264px) / 6.4));
+        --mw: min(clamp(64px, calc(var(--edge) - 114px), 124px), calc((100vh - 264px) / 6.4));
         display: block;
         position: fixed;
         top: calc(84px + (100vh - 244px - var(--mw) * 6.4) / 2);   /* centred between the nav and 160px above the bottom, clear of the footer rule */
@@ -153,8 +162,8 @@
         z-index: 1;
         pointer-events: none;
       }
-      .marginalia-slot-left { left: max(44px, calc(((100vw - 1152px) / 2 + 30px - var(--mw)) / 2)); }
-      .marginalia-slot-right { right: max(44px, calc(((100vw - 1152px) / 2 + 30px - var(--mw)) / 2)); }
+      .marginalia-slot-left { left: max(40px, calc((var(--edge) + 6px - var(--mw)) / 2)); }
+      .marginalia-slot-right { right: max(40px, calc((var(--edge) + 6px - var(--mw)) / 2)); }
       .marginalia-svg { position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; overflow: visible; }
       .marginalia-svg.is-active { visibility: visible; }
     }
