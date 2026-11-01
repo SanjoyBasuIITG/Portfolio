@@ -1,0 +1,112 @@
+/* Studio: a modern product-site take on the portfolio. Loaded after each page's own styles, so it only overrides. */
+:root {
+  --page: #F6F7F4; --panel: #FFFFFF; --hairline: rgba(14,20,17,.09); --ink: #0E1411; --secondary: #5B6460;
+  --glow: #1FA9E1; --mint: #5CC9A7; --link: #0E1411; --dark: #0E1411; --on-dark: #F6F7F4; --on-dark-2: #9AA39B;
+  --radius: 26px; --shadow: 0 1px 2px rgba(14,20,17,.04), 0 12px 40px -12px rgba(14,20,17,.14);
+  --font-heading: "Bricolage Grotesque", system-ui, sans-serif; --font-data: "JetBrains Mono", ui-monospace, monospace;
+}
+html body { background: var(--page); color: var(--ink); font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+html body p, html body li, html body td, html body span, html body div { font-family: inherit; }
+h1, h2, h3, .font-serif, .font-serif-custom, .font-newsreader, .font-heading { font-family: "Bricolage Grotesque", system-ui, sans-serif !important; font-style: normal !important; }
+.font-mono, .font-mono-custom, .font-mono-meta { font-family: "JetBrains Mono", ui-monospace, monospace !important; }
+::selection { background: var(--glow); color: #fff; }
+
+/* ---------- the aurora: three soft blobs drifting slowly behind everything ---------- */
+.st-aurora { position: fixed; inset: -20vmax; z-index: -1; pointer-events: none; filter: blur(70px); opacity: .55; }
+.st-aurora i { position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; }
+.st-aurora i:nth-child(1) { left: 8%; top: 4%; background: radial-gradient(circle, rgba(31,169,225,.55), transparent 65%); }
+.st-aurora i:nth-child(2) { right: 4%; top: 22%; background: radial-gradient(circle, rgba(92,201,167,.5), transparent 65%); }
+.st-aurora i:nth-child(3) { left: 30%; bottom: 0; background: radial-gradient(circle, rgba(160,190,255,.4), transparent 65%); }
+@media (prefers-reduced-motion: no-preference) {
+  .st-aurora i:nth-child(1) { animation: st-drift-a 26s ease-in-out infinite alternate; }
+  .st-aurora i:nth-child(2) { animation: st-drift-b 32s ease-in-out infinite alternate; }
+  .st-aurora i:nth-child(3) { animation: st-drift-a 38s ease-in-out infinite alternate-reverse; }
+}
+@keyframes st-drift-a { to { transform: translate(8vmax, 6vmax) scale(1.08); } }
+@keyframes st-drift-b { to { transform: translate(-7vmax, 8vmax) scale(.94); } }
+
+/* ---------- floating glass nav pill ---------- */
+.site-nav { position: sticky !important; top: 14px !important; z-index: 60; background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 0 16px; }
+.site-nav-inner { max-width: 1120px !important; margin: 14px auto 0 !important; padding: 10px 12px 10px 20px !important; border-radius: 999px;
+  background: rgba(255,255,255,.66); backdrop-filter: saturate(1.6) blur(18px); -webkit-backdrop-filter: saturate(1.6) blur(18px);
+  border: 1px solid rgba(255,255,255,.7); box-shadow: 0 8px 30px -10px rgba(14,20,17,.18); }
+.site-nav-wordmark { font-family: "Bricolage Grotesque", sans-serif !important; font-weight: 600; letter-spacing: -.02em; }
+.site-nav-links a { font-family: "Inter", sans-serif !important; text-transform: none !important; letter-spacing: 0 !important; font-size: 14px !important; font-weight: 500;
+  padding: 7px 14px; border-radius: 999px; transition: background .2s ease; }
+.site-nav-links a:hover { background: rgba(14,20,17,.06); }
+.site-nav-links a[aria-current="page"] { background: var(--ink); color: #fff !important; }
+.design-switch select { border-radius: 999px !important; border-color: var(--hairline) !important; background-color: rgba(255,255,255,.7) !important; }
+.margin-ruler { display: none !important; }
+
+/* ---------- type ---------- */
+h1 { letter-spacing: -.035em !important; font-weight: 600 !important; line-height: .98 !important; font-variation-settings: "opsz" 96; }
+h2 { letter-spacing: -.03em !important; font-weight: 600 !important; }
+h3 { letter-spacing: -.02em !important; font-weight: 600 !important; }
+.st-grad { background: linear-gradient(100deg, var(--glow) 10%, var(--mint) 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+main section .lg\:col-span-3 > span.font-mono-custom, main > section > .relative.z-10.mb-12 > div, main section h2.font-mono {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.75);
+  border: 1px solid var(--hairline); color: var(--ink) !important; font-size: 11px !important; letter-spacing: .08em !important; box-shadow: var(--shadow); position: static !important; }
+main section .lg\:col-span-3 > span.font-mono-custom::before, main > section > .relative.z-10.mb-12 > div::before, main section h2.font-mono::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg, var(--glow), var(--mint)); }
+
+/* ---------- Home ---------- */
+[data-page="index"] main > section:first-child h1 { font-size: clamp(52px, 7.4vw, 108px) !important; }
+/* the two links become pill buttons */
+[data-page="index"] main > section:first-child a[href="#journey"], [data-page="index"] main > section:first-child a[href="#contact"], [data-page="index"] main > section:first-child a[href^="mailto"] {
+  display: inline-flex; align-items: center; padding: 13px 22px; border-radius: 999px; font: 500 15px "Inter", sans-serif !important; text-transform: none !important; letter-spacing: 0 !important;
+  border: 1px solid var(--ink); text-decoration: none !important; transition: transform .2s ease, box-shadow .2s ease; }
+[data-page="index"] main > section:first-child a[href="#journey"] { background: var(--ink); color: #fff !important; box-shadow: 0 10px 24px -8px rgba(14,20,17,.4); }
+[data-page="index"] main > section:first-child a:hover { transform: translateY(-1px); }
+/* photo as a rounded card */
+.micrograph-frame { border-radius: var(--radius) !important; background: #fff !important; padding: 10px !important; border: 0 !important; box-shadow: var(--shadow); overflow: hidden; }
+.micrograph-frame > div:first-of-type, .micrograph-frame .aspect-\[3\/4\] { border-radius: 18px; overflow: hidden; background: linear-gradient(160deg, #EAF6FB, #EAF7F1) !important; }
+.micrograph-frame img { filter: none !important; }
+.micrograph-frame::before, .micrograph-frame::after, .crop-mark-tr, .crop-mark-bl { display: none !important; }
+/* facts as bento tiles */
+.grid.grid-cols-3.hairline-all { border: 0 !important; background: none !important; gap: 10px; }
+.grid.grid-cols-3.hairline-all > div { background: rgba(255,255,255,.8) !important; border: 1px solid var(--hairline) !important; border-radius: 18px; box-shadow: var(--shadow); padding: 14px 10px !important; }
+.grid.grid-cols-3.hairline-all .motion-decode { font: 500 11.5px/1.35 "JetBrains Mono", monospace !important; letter-spacing: .02em !important; }
+/* the scale stages and the Now box as cards with a soft gradient edge */
+main [data-chapter].bg-\[var\(--panel\)\], main .bg-\[var\(--panel\)\].hairline-all {
+  border-radius: var(--radius) !important; border: 1px solid rgba(255,255,255,.9) !important; box-shadow: var(--shadow);
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, rgba(31,169,225,.35), rgba(92,201,167,.35)) border-box !important; border-color: transparent !important; }
+#journey .text-center p { font: 600 clamp(26px, 3vw, 40px)/1.15 "Bricolage Grotesque", sans-serif !important; letter-spacing: -.03em; font-style: normal !important;
+  background: linear-gradient(100deg, var(--glow), var(--mint)); -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+#journey [data-chapter] .font-mono-custom.text-5xl, #journey [data-chapter] span[class*="text-5xl"], #journey [data-chapter] [class*="text-6xl"] { font-family: "Bricolage Grotesque", sans-serif !important; font-weight: 600; letter-spacing: -.04em; }
+.home-zoom.is-on { opacity: .75; }   /* softer on the product page; still hidden in the hero until About */
+
+/* ---------- Journey: entries as cards ---------- */
+[data-page="journey"] main section article { background: rgba(255,255,255,.82); border: 1px solid var(--hairline) !important; border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px 30px !important; margin-bottom: 18px; }
+[data-page="journey"] .divide-y > * + * { border-top: 0 !important; }
+[data-page="journey"] main > section > span.font-mono { background: linear-gradient(135deg, rgba(31,169,225,.18), rgba(92,201,167,.18)); -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+[data-page="journey"] table { background: rgba(255,255,255,.85); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+[data-page="journey"] main section, [data-page="journey"] main section.hairline-b { border-bottom-color: transparent !important; }
+
+/* ---------- Publications: entries as cards, the first-author badge as a gradient pill ---------- */
+[data-page="publications"] main section > div.py-6, [data-page="publications"] main section .divide-y > div {
+  background: rgba(255,255,255,.82); border: 1px solid var(--hairline) !important; border-radius: 20px; box-shadow: var(--shadow); padding: 22px 26px !important; margin-bottom: 12px; }
+[data-page="publications"] .divide-y { border: 0 !important; }
+[data-page="publications"] .divide-y > * + * { border-top: 1px solid var(--hairline) !important; }
+[data-page="publications"] .border-b.hairline-border { border-bottom: 0 !important; }
+span.inline-block.uppercase[class*="bg-[var(--link)]"] { background: linear-gradient(100deg, var(--glow), var(--mint)) !important; color: #fff !important; border-radius: 999px; padding: 4px 12px !important; }
+.pub-field { opacity: .75; }
+
+/* ---------- Fun Pictures: rounded board and photos ---------- */
+.contact-sheet-panel { border-radius: 32px !important; background: rgba(255,255,255,.7) !important; border: 1px solid rgba(255,255,255,.9) !important; box-shadow: var(--shadow);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.photo-frame { border-radius: 20px !important; background: #fff !important; border: 1px solid var(--hairline) !important; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease; }
+.photo-frame:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(14,20,17,.05), 0 22px 50px -16px rgba(14,20,17,.25); }
+.photo-img-wrap, .photo-img-wrap img { border-radius: 14px; overflow: hidden; }
+
+/* ---------- data bar as a floating dark pill; footer ---------- */
+.data-bar { left: 16px !important; bottom: 16px !important; border-radius: 999px; overflow: hidden; color: var(--on-dark) !important; box-shadow: 0 12px 30px -10px rgba(14,20,17,.45); }
+footer { background: transparent !important; border-top: 1px solid var(--hairline) !important; }
+
+/* ---------- sections rise into view as they scroll in ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    main > section, main section article, .photo-frame, [data-chapter] {
+      animation: st-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 38%; }
+  }
+}
+@keyframes st-rise { from { opacity: 0; transform: translateY(28px) scale(.985); } to { opacity: 1; transform: none; } }

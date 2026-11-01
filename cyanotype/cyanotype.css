@@ -1,0 +1,25 @@
+/* Cyanotype: the site as a blueprint print. Deep Prussian blue paper (the iron-salt photographic process), every ink line
+   white, a faint drafting grid, the paper slightly uneven like a hand-coated print. Loaded after each page's own styles. */
+:root {
+  --page: #1D3E66; --panel: #23497A; --hairline: rgba(233,241,250,.26); --ink: #EEF4FA; --secondary: #B5C9DF;
+  --glow: #8FDCFF; --link: #FFFFFF; --dark: #0E2240; --on-dark: #EEF4FA; --on-dark-2: #9DB3CC;
+}
+html body {
+  background-color: var(--page);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.06), transparent 55%),
+    radial-gradient(ellipse at 85% 80%, rgba(0,10,30,.28), transparent 60%),
+    linear-gradient(rgba(233,241,250,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(233,241,250,.07) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+  background-attachment: fixed, fixed, local, local;
+  color: var(--ink);
+}
+.site-nav { background: rgba(29,62,102,.9) !important; }
+::selection { background: #EEF4FA; color: #1D3E66; }
+/* photos keep their colour but sit on the print like mounted prints; micrographs read as white on blue */
+.micrograph-frame { background: rgba(255,255,255,.06) !important; }
+img[src*="fesem"], img[src*="fetem"] { filter: grayscale(1) contrast(1.1); mix-blend-mode: screen; }
+.data-bar { background: #0E2240 !important; color: var(--on-dark) !important; }
+/* the film strip on Fun Pictures is drawn in grey; on blue it reads as white */
+.fun-film { filter: brightness(2.6) saturate(0); }
+.photo-frame { background: rgba(255,255,255,.07) !important; }

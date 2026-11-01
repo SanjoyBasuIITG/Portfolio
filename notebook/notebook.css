@@ -1,0 +1,98 @@
+/* Notebook theme (pen pairing a): the lab notebook written in the old pharmacopoeia palette.
+   Paper is pale cellulose with a faint graph grid and a notebook margin rule. Headings are Besley pharmacopoeia labels, reading
+   text is Newsreader. Two pens: Prussian blue (#1F3A5F, Caveat) for notes and links, carmine (#9B2D30, Kalam) for circles,
+   underlines and stamps. Loaded after each page's own styles, so it only overrides. */
+:root {
+  --link: #1F3A5F;
+  --pen-blue: #1F3A5F;
+  --pen-red: #9B2D30;
+  --grid: #DDE0D4;
+}
+html body {
+  background-color: var(--page);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: local;
+  font-family: "Newsreader", Georgia, serif;
+}
+html body p, html body li, html body td { font-family: "Newsreader", Georgia, serif; }
+/* the notebook margin: a double rule behind the text, between the margin notes and the writing, as in a real notebook.
+   Home: between the section labels and the text. Publications: between the years and the entries. Journey: just left of the
+   entries (the dates are written in the margin). Fun Pictures has its own contact-sheet board, so no rule there. */
+@media (min-width: 1024px) {
+  html[data-theme-notebook] body::before { content: ""; position: fixed; top: 0; bottom: 0; z-index: -1; pointer-events: none; width: 5px;
+    left: calc(max(0px, (100vw - 1152px) / 2) + 24px + var(--nb-rule, -14px));
+    border-left: 1px solid rgba(31,58,95,.42); border-right: 1px solid rgba(31,58,95,.22); }
+  /* 12-column grids with 32px gaps (11 gaps = 352px): Home's text starts after 3 columns + 3 gaps, Publications' after 2 + 2;
+     the rule sits 18px before the text */
+  html[data-theme-notebook="index"] { --nb-rule: calc((100vw - 48px - 352px) / 4 + 78px); }
+  html[data-theme-notebook="publications"] { --nb-rule: calc((100vw - 48px - 352px) / 6 + 46px); }
+  html[data-theme-notebook="fun"] body::before { display: none; }
+}
+@media (min-width: 1152px) {
+  html[data-theme-notebook="index"] { --nb-rule: calc((1104px - 352px) / 4 + 78px); }
+  html[data-theme-notebook="publications"] { --nb-rule: calc((1104px - 352px) / 6 + 46px); }
+}
+.margin-ruler { display: none !important; }
+.site-nav { background: rgba(236,237,230,.9); }
+
+/* ---------- pens ---------- */
+.nb-note { font: 600 25px/1.15 "Caveat", cursive; color: var(--pen-blue); }
+.nb-hl { background: linear-gradient(transparent 62%, rgba(31,169,225,.28) 62%, rgba(31,169,225,.28) 92%, transparent 92%); }
+.nb-pen { text-decoration: underline; text-decoration-color: var(--pen-red); text-decoration-thickness: 2px; text-underline-offset: .18em; }
+.nb-arrow { position: absolute; width: 96px; height: 72px; overflow: visible; fill: none; stroke: var(--pen-blue); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nb-inline-note { margin-top: 18px; transform: rotate(-1.5deg); transform-origin: left; }
+a[href^="mailto"], .text-\[var\(--link\)\] { color: var(--pen-blue); }
+
+/* ---------- pharmacopoeia labels: section labels in a double-ruled box ---------- */
+main section .lg\:col-span-3 > span.font-mono-custom,
+main > section > .relative.z-10.mb-12 > div,
+main section h2.font-mono {
+  display: inline-block; padding: 7px 14px 6px; margin-bottom: 4px; color: var(--ink) !important; background: var(--page);
+  border: 1px solid var(--ink); box-shadow: 0 0 0 3px var(--page), 0 0 0 4px var(--ink); letter-spacing: .14em;
+}
+main > section > .relative.z-10.mb-12 > div { text-transform: none !important; padding-right: 14px !important; }
+
+/* ---------- Home: the photo taped in like a print, the facts circled in carmine ---------- */
+.micrograph-frame { background: #F6F6F1 !important; padding: 12px 12px 14px !important; transform: rotate(2deg); box-shadow: 0 12px 28px rgba(27,33,29,.16); border: 0 !important; }
+.micrograph-frame::before, .micrograph-frame::after, .micrograph-frame .crop-mark-tr, .micrograph-frame .crop-mark-bl { display: none !important; }
+.lg\:col-span-5.flex.flex-col { position: relative; }
+.lg\:col-span-5.flex.flex-col::before { content: ""; position: absolute; z-index: 2; top: -12px; left: 50%; width: 120px; height: 30px; margin-left: -60px;
+  background: rgba(224,226,216,.92); border-left: 1px dashed rgba(94,101,92,.35); border-right: 1px dashed rgba(94,101,92,.35); transform: rotate(-5deg); }
+.nb-photo-note { position: absolute; z-index: 3; top: -54px; left: -40px; transform: rotate(-3deg); font-family: "Kalam", cursive; font-weight: 400; font-size: 21px; }
+.nb-photo-arrow { top: -30px; left: -112px; }
+.grid.grid-cols-3.hairline-all { border: 0 !important; background: none !important; gap: 14px; margin-top: 30px !important; }
+.grid.grid-cols-3.hairline-all > div { border: 2px solid var(--pen-red) !important; border-radius: 48% 52% 46% 54% / 60% 42% 58% 40%; padding: 10px 12px !important; }
+.grid.grid-cols-3.hairline-all > div:nth-child(2) { transform: rotate(-1.5deg); }
+.grid.grid-cols-3.hairline-all > div:nth-child(3) { transform: rotate(1deg); }
+.grid.grid-cols-3.hairline-all .motion-decode { font-family: "Kalam", cursive !important; font-size: 15px !important; letter-spacing: .02em !important; color: var(--pen-red) !important; }
+/* the line between the scale panels, written by hand */
+#journey .text-center p { font: 600 34px/1.2 "Caveat", cursive !important; color: var(--pen-blue) !important; font-style: normal !important; }
+@media (max-width: 1023px) { .nb-photo-arrow { display: none; } .nb-photo-note { position: static; margin: 0 0 10px; } }
+
+/* ---------- Journey: dates written in the margin ---------- */
+/* each date sits inside its entry's title (level with the first line), in the margin to the left of the text. Shown only where
+   the margin is wide enough to hold it; on smaller screens the dates are already in the entry text below each title. */
+main section article h3 { position: relative; }
+/* by default the date is a small handwritten line just above the title, inside the text column (always aligned, nothing to collide with) */
+.nb-margin-date { display: block; width: max-content; margin: 0 0 6px; font: 600 22px/1 "Caveat", cursive; color: var(--pen-blue); transform: rotate(-2deg); transform-origin: left center; }
+/* on wide screens there is room beside Journey's margin sketches, so the date moves into the margin, level with the title */
+@media (min-width: 1760px) {
+  .nb-margin-date { position: absolute; right: calc(100% + 16px); top: .3em; margin: 0; text-align: right; white-space: nowrap;
+    font-size: 24px; transform: rotate(-4deg); transform-origin: right center; }
+  #uv-block .nb-margin-date { right: calc(100% + 16px + 33px); }   /* the UV-lamp box has 32px padding: line up with the other dates */
+}
+
+/* ---------- Publications: years in pen, the first-author stamp in carmine ---------- */
+.md\:col-span-2.font-mono.text-sm { font: 600 26px/1 "Caveat", cursive !important; color: var(--pen-blue) !important; letter-spacing: 0 !important; }
+span.inline-block.uppercase[class*="bg-[var(--link)]"] { background: none !important; color: var(--pen-red) !important; border: 2px solid var(--pen-red); padding: 3px 10px !important;
+  transform: rotate(-4deg); font-family: "Martian Mono", monospace; font-weight: 600; letter-spacing: .14em; }
+
+/* ---------- Fun Pictures: frames like taped prints, labels and months in pen ---------- */
+.photo-frame { background: #F6F6F1 !important; box-shadow: 0 8px 20px rgba(27,33,29,.12); transform: rotate(-.8deg); position: relative; }
+.photo-frame:nth-child(even) { transform: rotate(.9deg); }
+.photo-frame::before { content: ""; position: absolute; z-index: 2; top: -10px; left: 50%; width: 80px; height: 22px; margin-left: -40px;
+  background: rgba(224,226,216,.9); border-left: 1px dashed rgba(94,101,92,.3); border-right: 1px dashed rgba(94,101,92,.3); transform: rotate(-3deg); }
+.photo-frame .font-mono.uppercase span { font: 600 19px "Caveat", cursive; color: var(--pen-blue); text-transform: none; letter-spacing: 0; }
+.photo-frame .font-mono.uppercase { text-transform: none !important; }
+section .font-mono.text-\[11\.5px\] { font: 600 24px/1 "Caveat", cursive !important; color: var(--pen-blue) !important; letter-spacing: 0 !important; text-transform: none !important; }

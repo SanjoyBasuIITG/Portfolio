@@ -1,0 +1,27 @@
+/* All seven pens, each with its own job, like the "Pens & hands" sheet. Loaded after notebook.css.
+   Prussian blue (Caveat) main notes · iron-gall (Homemade Apple) dates and the name · carmine (Kalam) circles, underlines, stamps ·
+   verdigris (Gochi Hand) labels and sample names · graphite (Reenie Beanie) measurements · sepia (Nanum Pen Script) captions on prints ·
+   Prussian blue neat (Patrick Hand) longer notes that must stay readable. */
+:root { --pen-iron: #3B2F2A; --pen-green: #3E7A5E; --pen-pencil: #6B6F6A; --pen-sepia: #704214; }
+
+/* iron-gall: dates and the signature line. Dates are in Kalam, a clear hand whose numbers cannot be misread (2023 never looks like
+   2025); the cursive Homemade Apple is kept only for the name. */
+.nb-photo-note { font: 400 17px/1.6 "Homemade Apple", cursive !important; color: var(--pen-iron) !important; }
+.nb-margin-date { font: 400 21px/1.2 "Kalam", cursive !important; color: var(--pen-iron) !important; }
+.md\:col-span-2.font-mono.text-sm { font: 400 22px/1.2 "Kalam", cursive !important; color: var(--pen-iron) !important; }
+section .font-mono.text-\[11\.5px\] { font: 400 21px/1.2 "Kalam", cursive !important; color: var(--pen-iron) !important; text-transform: none !important; }
+
+/* verdigris: labels and sample names */
+.nb-inline-note { font: 400 24px/1.25 "Gochi Hand", cursive !important; color: var(--pen-green) !important; }
+.font-mono-meta.text-xs.uppercase.text-secondary.tracking-wider { font: 400 19px/1.35 "Gochi Hand", cursive !important; color: var(--pen-green) !important; text-transform: none !important; letter-spacing: 0 !important; }
+
+/* graphite pencil: measurements */
+#journey [data-chapter] .font-mono-custom.text-\[12px\] { font: 400 30px/1 "Reenie Beanie", cursive !important; color: var(--pen-pencil) !important; text-transform: none !important; letter-spacing: 0 !important; }
+main > section > span.font-mono { color: rgba(107,111,106,.32) !important; }
+
+/* sepia: captions on taped prints */
+.micrograph-frame .font-mono-custom.text-\[11px\] { font: 400 23px/1 "Nanum Pen Script", cursive !important; color: var(--pen-sepia) !important; text-transform: none !important; letter-spacing: 0 !important; }
+.photo-frame .font-mono.uppercase span { font: 400 24px "Nanum Pen Script", cursive !important; color: var(--pen-sepia) !important; }
+
+/* Prussian blue, neat: longer notes that must stay readable */
+.font-mono.text-xs.text-\[var\(--secondary\)\].uppercase.tracking-wider { font: 400 18px/1.4 "Patrick Hand", cursive !important; color: var(--pen-blue) !important; text-transform: none !important; letter-spacing: 0 !important; }
